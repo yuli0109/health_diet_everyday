@@ -1,3 +1,18 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+strong.sign_up_hint {
+  display: block;
+  text-align: center;
+  margin: 2vw 0;
+}
+
+#sign_up_container {
+  background-color: rgba(255,255,255,0.3);
+  border-radius: 8px;
+  padding: 20px;
+  width: 30vw;
+  font-weight: bold;
+  margin-top: 5vw;
+}

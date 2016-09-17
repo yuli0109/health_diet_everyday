@@ -17,3 +17,15 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+#main_nav {
+    display: flex;
+    flex-flow: row wrap;
+    justify-content: flex-end;
+    margin: 0 auto;
+}
+
+// .month{
+//   // @extend .selectpicker;
+// }
+
