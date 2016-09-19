@@ -11,10 +11,39 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160915234552) do
+ActiveRecord::Schema.define(version: 20160919162151) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "foods", force: :cascade do |t|
+    t.string   "name"
+    t.string   "category"
+    t.integer  "calorie"
+    t.float    "fat"
+    t.float    "protein"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "portions", force: :cascade do |t|
+    t.integer  "food_id"
+    t.integer  "record_id"
+    t.integer  "weight"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "portions", ["food_id"], name: "index_portions_on_food_id", using: :btree
+  add_index "portions", ["record_id"], name: "index_portions_on_record_id", using: :btree
+
+  create_table "records", force: :cascade do |t|
+    t.integer  "user_id"
+    t.date     "date_create"
+    t.integer  "total_calorie"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "name"
@@ -25,4 +54,6 @@ ActiveRecord::Schema.define(version: 20160915234552) do
     t.datetime "updated_at",      null: false
   end
 
+  add_foreign_key "portions", "foods"
+  add_foreign_key "portions", "records"
 end

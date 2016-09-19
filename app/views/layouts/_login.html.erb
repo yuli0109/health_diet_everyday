@@ -1,0 +1,33 @@
+<div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1>Log In</h1>
+        <p id="alert"><%= alert %></p>
+      </div>
+      <div class="modal-body">
+        <%= form_tag sessions_path , class:"form-horizontal" do %>
+        <div class="field form-group">
+              <%= label_tag :email, nil, class: "col-lg-3 control-label"%>
+            <div class="col-lg-6">
+              <%= text_field_tag :email, params[:email], placeholder: "Enter your email here", class: "form-control" %>
+            </div>
+        </div>
+        <div class="field form-group">
+              <%= label_tag :password, nil, class: "col-lg-3 control-label" %>
+            <div class="col-lg-6">
+              <%= password_field_tag :password, '', placeholder: "Password", class: "form-control" %>
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+      <div class="actions">
+          No account?
+          <%= link_to "Sign up", new_user_path %>
+          <%= submit_tag "Log In", class:"btn btn-primary" %>
+      </div>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>

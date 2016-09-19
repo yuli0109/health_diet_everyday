@@ -1,0 +1,8 @@
+<h1 id= "record_title"><%= current_user.name %>'s Food</h1>
+<div class="container" id="records_container">
+  <div class="list-group">
+    <% @records.each do |record| %>
+      <%= link_to "Record of #{record.date_create} ", record_path(record.id), {class: "list-group-item list_record"} %>
+    <% end %>
+  </div>
+</div>
