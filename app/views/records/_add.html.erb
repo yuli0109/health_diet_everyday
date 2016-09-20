@@ -1,0 +1,25 @@
+<div class="modal fade" id="addRecordModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1>Add a Record</h1>
+        <p id="alert"><%= alert %></p>
+      </div>
+      <div class="modal-body">
+        <%= form_tag records_path , class:"form-horizontal" do %>
+        <div class="field form-group">
+              <%= label_tag :date_create, nil, class: "col-lg-3 control-label"%>
+            <div class="col-lg-6">
+              <%= date_field_tag :date_create, nil, class: "form-control" %>
+            </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+      <div class="actions">
+          <%= submit_tag "Create", class:"btn btn-success" %>
+      </div>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>

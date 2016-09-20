@@ -9,15 +9,24 @@
       <th>Fat</th>
       <th>Protein</th>
     </tr>
-    <% @foods.each do |food| %>
+    <% @portions.each do |portion| %>
       <tr>
-        <th><%= food.name %></th>
-        <th></th>
-        <th><%= food.category %></th>
-        <th><%= food.calorie %> kcal</th>
-        <th><%= food.fat %>g</th>
-        <th><%= food.protein %>g</th>
+        <td><%= portion.food.name %></td>
+        <td><%= portion.weight %>g</td>
+        <td><%= portion.food.category %></td>
+        <td><%= portion.food.calorie %> kcal</td>
+        <td><%= portion.food.fat %>g</td>
+        <td><%= portion.food.protein %>g</td>
       </tr>
     <% end %>
   </table>
+  <div id="buttons_record">
+    <div id="end_group">
+      <a class= "btn btn-success" type= "button" id="add_portion_btn" data-toggle="modal" data-target="#addPortionModal">Add</a>
+      <%= link_to "Back", records_path, {id: "back_record" ,class: "btn btn-danger"}%>
+      <%= link_to "Delete", record_path(@record), method: :delete, class: "btn btn-warning",id: "delete_record", data: { confirm: "Are you sure you want to remove this record?"} %>
+    </div>
+  </div>
 </div>
+
+<%= render partial: 'portions/addPortion', locals: {record: @record} %>

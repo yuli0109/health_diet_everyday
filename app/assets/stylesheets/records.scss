@@ -17,3 +17,19 @@
 #record_title {
   color: rgb(6,13,61);
 }
+
+#buttons_record {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: flex-end;
+  font-weight: bold;
+}
+#end_group {
+  display: flex;
+  justify-content: space-around;
+  width: 20vw;
+}
+
+#back_record, #add_portion_btn, #delete_record {
+  font-weight: bold;
+}

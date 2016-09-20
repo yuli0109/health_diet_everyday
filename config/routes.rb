@@ -7,7 +7,11 @@ Rails.application.routes.draw do
   get "/login", to: "sessions#new"
   get "/sessions", to: "sessions#new"
 
-  resources :records
+  resources :records do
+    resources :portions
+  end
+  resources :portions
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 

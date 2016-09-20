@@ -1,0 +1,84 @@
+<div class="modal fade" id="addPortionModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1>Add a portion</h1>
+        <p id="alert"><%= alert %></p>
+      </div>
+      <div class="modal-body">
+        <%= form_tag "/records/#{record.id}/portions", class:"form-horizontal" do %>
+        <div class="field form-group">
+              <%= label_tag :category, nil, class: "col-lg-3 control-label"%>
+            <div class="col-lg-6">
+              <%= select_tag :category, options_for_select(@foods_cates.map{ |foods_cate| [foods_cate.category, foods_cate.category, { 'data-cate' => foods_cate.category }] }), class: "form-control category_change" %>
+            </div>
+        </div>
+        <div class="field form-group">
+              <%= label_tag :name, nil, class: "col-lg-3 control-label"%>
+            <div class="col-lg-6">
+              <%= select_tag :food_id, options_for_select(Food.all.map{ |food| [food.name, food.id, { 'data-food' => food.category }] }),class: "form-control category_food", disabled: true %>
+            </div>
+        </div>
+        <script>
+          var foods = <%= raw @json_foods %>
+        </script>
+        <div class="field form-group">
+              <%= label_tag :weight, nil, class: "col-lg-3 control-label"%>
+            <div class="col-lg-6">
+              <%= number_field_tag :weight, nil, within: 1...2000, class: "form-control", id: "weight_input"%>
+            </div>
+        </div>
+        <div class="jumbotron">
+          <div class="media">
+            <div class="media-left">
+              <%= image_tag "/assets/foods/Fruit/Banana.jpg", size: "160x120", class: "media-object img-rounded", id: "food_image" %>
+            </div>
+            <div class="media-body">
+              <h4 class="media-heading">Discripions</h4>
+              <div class="container">
+                <table class="table table-hover">
+                  <tr>
+                    <th>Name</th>
+                    <th>Category</th>
+                    <th>Calories</th>
+                    <th>Fat</th>
+                    <th>Protein</th>
+                  </tr>
+                  <tr>
+                    <td style= "display:none" id="name_food_select"></td>
+                    <td style= "display:none" id="cate_food_select"></td>
+                    <td style= "display:none" id="cal_food_select">kcal</td>
+                    <td style= "display:none" id="fat_food_select">g</td>
+                    <td style= "display:none" id="protein_food_select">g</td>
+                  </tr>
+                  <% @foods.each do |food| %>
+                    <tr>
+                      <td class= "cells_food" style= "display:none" specify-food= '<%= food.name %>'><%= food.name %></td>
+                      <td class= "cells_food" style= "display:none" specify-food= '<%= food.name %>'><%= food.category %></td>
+                      <td class= "cells_food" style= "display:none" specify-food= '<%= food.name %>'><%= food.calorie %> kcal</td>
+                      <td class= "cells_food" style= "display:none" specify-food= '<%= food.name %>'><%= food.fat %> g</td>
+                      <td class= "cells_food" style= "display:none" specify-food= '<%= food.name %>'><%= food.protein %> g</td>
+                    </tr>
+                  <% end %>
+                  <tr>
+                    <th></th>
+                    <th>Based on weight:</th>
+                    <th id="cal_food_sum">kcal</th>
+                    <th id="fat_food_sum">g</th>
+                    <th id="protein_food_sum">g</th>
+                  </tr>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal-footer">
+      <div class="actions">
+          <%= submit_tag "Create", class:"btn btn-success" %>
+      </div>
+      <% end %>
+      </div>
+    </div>
+  </div>
+</div>

@@ -6,27 +6,24 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Food.delete_all
-
 banana = Food.create({name: "Banana", category: "Fruit", calorie: 89, fat: 0.3, protein: 1.1})
 apple = Food.create({name: "Apple", category: "Fruit", calorie: 52, fat: 0.2, protein: 0.3})
 orange = Food.create({name: "Orange", category: "Fruit", calorie: 47, fat: 0.1, protein: 0.9})
 
-peter = User.first
-saber = User.find_by(name: "saber")
+
+Food.create({name: "Milk", category: "Drink", calorie: 42, fat: 1, protein: 3.4})
+Food.create({name: "Yogurt-Greek", category: "Drink", calorie: 59, fat: 0.4, protein: 10})
+Food.create({name: "Egg", category: "Meat", calorie: 155, fat: 11, protein: 13})
 
 
-peter.records.first.foods << [banana,apple,orange]
+saber = User.find_by(name: "Saber")
 
 
-Record.create(user_id: 3 , date_create: "2016-09-18")
-Record.create(user_id: 3 , date_create: "2016-09-17")
-Record.create(user_id: 3 , date_create: "2016-09-16")
-Record.create(user_id: 3 , date_create: "2016-09-15")
-Record.create(user_id: 3 , date_create: "2016-09-14")
-Record.create(user_id: 3 , date_create: "2016-09-13")
-Record.create(user_id: 3 , date_create: "2016-09-12")
-Record.create(user_id: 3 , date_create: "2016-09-11")
-Record.create(user_id: 3 , date_create: "2016-09-10")
+Record.create(user_id: 1 , date_create: "2016-09-18")
+Record.create(user_id: 1 , date_create: "2016-09-17")
+Record.create(user_id: 1 , date_create: "2016-09-16")
 
-saber.records.first.foods << [banana,orange]
+
+Record.first.portions.create(record_id: 1, food_id: 1, weight: 80)
+Record.first.portions.create(record_id: 1, food_id: 2, weight: 20)
+
