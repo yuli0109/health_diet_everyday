@@ -16,14 +16,14 @@ Food.create({name: "Yogurt-Greek", category: "Drink", calorie: 59, fat: 0.4, pro
 Food.create({name: "Egg", category: "Meat", calorie: 155, fat: 11, protein: 13})
 
 
-saber = User.find_by(name: "Saber")
+# saber = User.find_by(name: "Saber")
 
 
-Record.create(user_id: 1 , date_create: "2016-09-18")
-Record.create(user_id: 1 , date_create: "2016-09-17")
-Record.create(user_id: 1 , date_create: "2016-09-16")
+# Record.create(user_id: 1 , date_create: "2016-09-18")
+# Record.create(user_id: 1 , date_create: "2016-09-17")
+# Record.create(user_id: 1 , date_create: "2016-09-16")
 
 
-Record.first.portions.create(record_id: 1, food_id: 1, weight: 80)
-Record.first.portions.create(record_id: 1, food_id: 2, weight: 20)
+# Record.first.portions.create(record_id: 1, food_id: 1, weight: 80)
+# Record.first.portions.create(record_id: 1, food_id: 2, weight: 20)
 
