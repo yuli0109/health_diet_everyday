@@ -29,7 +29,16 @@
     </div>
   </div>
 </div>
-
+<div class="container" id="summary_container">
+  <h4>Summary</h4>
+  <p id="calorieIntake">Calorie Intake:</p>
+  <p>(USDA recommend: ~2400 kcal)</p>
+  <div class="progress" id="proBarMale">
+    <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width: 0%">
+    0%
+    </div>
+  </div>
+</div>
 <%= render partial: 'portions/addPortion', locals: {record: @record} %>
 
 
@@ -42,20 +51,78 @@ function deleteRowPortion() {
     window.location = `/remove_portion/${$portionId}`;
   }
 }
-//Getting the data in DOM!
+//Create a color library
+var colorLib = ["#FF6384","#36A2EB","#FFCE56","#B1FE6F","#C6D6CE","#F55F08"];
+//Initialize arrays for each column
 var food_name_array = [];
 var weight_array = [];
 var calorie_array = [];
 var fat_array = [];
 var protein_array = [];
+var weightedCalorie = [];
+var weightedFat = [];
+var weightedProtein = [];
+var sumCalorie = 0;
+var sumFat = 0;
+var sumProtein = 0;
+//Getting the data in DOM!
 $('.food_name_cells').each(function() {food_name_array.push($(this).html())});
 $('.weight_cells').each(function() {weight_array.push(parseInt($(this).html()))});
 $('.calorie_cells').each(function() {calorie_array.push(parseInt($(this).html()))});
 $('.fat_cells').each(function() {fat_array.push(parseFloat($(this).html()))});
 $('.protein_cells').each(function() {protein_array.push(parseFloat($(this).html()))});
-  console.log(food_name_array);
-  console.log(weight_array);
-  console.log(calorie_array);
-  console.log(fat_array);
-  console.log(protein_array);
+for(var i=0; i< weight_array.length; i++) {
+    weightedCalorie[i] = parseInt(weight_array[i]*calorie_array[i]/100);
+    weightedFat[i] = weight_array[i]*fat_array[i]/100;
+    weightedProtein[i] = weight_array[i]*protein_array[i]/100;
+}
+//Calcuate the total calorie, fat and protein
+sumCalorie = weightedCalorie.reduce(function(previousValue, currentValue) {
+  return previousValue + currentValue;
+});
+sumFat = weightedFat.reduce(function(previousValue, currentValue) {
+  return previousValue + currentValue;
+});
+sumProtein = weightedProtein.reduce(function(previousValue, currentValue) {
+  return previousValue + currentValue;
+});
+//Update the summary
+$("#calorieIntake").html(`Calorie Intake:  ${sumCalorie} kcal`)
+//Update the progress bar
+$("#proBarMale div").attr('style',`width: ${sumCalorie*100/2400}%`);
+$("#proBarMale div").attr('aria-valuenow',`${(sumCalorie*100/2400).toFixed()}`);
+$("#proBarMale div").html(`${Math.floor(sumCalorie*100/2400)}%`);
+if (Math.floor(sumCalorie*100/2400) >= 100) {
+  $("#proBarMale div").addClass('progress-bar-danger');
+}else if (Math.floor(sumCalorie*100/2400) >= 75) {
+  $("#proBarMale div").addClass('progress-bar-warning');
+}else if (Math.floor(sumCalorie*100/2400) >= 50){
+  $("#proBarMale div").addClass('progress-bar-info');
+}
+//
+var ctx = document.getElementById("caloriePieChart");
+var data = {
+    labels: food_name_array,
+    datasets: [
+        {
+          data: weightedCalorie,
+          backgroundColor: colorLib,
+          hoverBackgroundColor: colorLib
+        }]
+};
+var myPieChart = new Chart(ctx,{
+    type: 'pie',
+    data: data,
+    options:{
+      title: {
+            display: true,
+            text: 'Calories of the day',
+            fontFamily: "Helvetica Neue",
+            fontSize: 20
+            },
+      legend: {
+            position: 'bottom',
+      }
+    }
+});
 </script>

@@ -40,3 +40,19 @@
 #back_record, #add_portion_btn, #delete_record {
   font-weight: bold;
 }
+
+#summary_container {
+  width: 20vw;
+  height: 20vw;
+  background-color: rgba(255,255,255,0.3);
+  border-radius: 8px;
+  padding: 10px 10px  ;
+  position: fixed;
+  top: 150px;
+  left: 1vw;
+  word-break: break-word;
+  h4 {
+    text-align: center;
+    margin-bottom: 2vw;
+  }
+}
