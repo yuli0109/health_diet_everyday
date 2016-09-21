@@ -12,9 +12,39 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require turbolinks
 //= require_tree .
 $(function() {
+  recordList = jQuery.map($('.list_record'), function(n) {
+    return $(n).html().split(" ").pop()
+  });
+  recordIdList = jQuery.map($('span.secretId'), function(ids) {
+    return $(ids).html()
+  });
+  $('#calendar').fullCalendar({
+      // put your options and callbacks here
+      header: {
+                left: 'title',
+                center: '',
+                right: 'prev,next '
+            },
+      dayClick: function(date, jsEvent, view) {
+        alert('Clicked on: '+this);
+        if ($.inArray(date.format(),recordList) !== -1) {
+          var idxRecord = recordList.indexOf(date.format());
+          var trueIdRecord = recordIdList[idxRecord];
+          var confirmRecord = window.confirm("See record?");
+          if (confirmRecord) {
+            window.location = `/records/${trueIdRecord}`;
+          }
+        }
+      }
+    });
+  $('.fc-day').each(function(){
+    if ($.inArray($(this).attr('data-date'), recordList) !== -1){
+      $(this).addClass('fc-state-highlight');
+    }
+  });
+  //EventListener of Add Portion
   $(document).on('change', '.category_change', function() {
     //Get current selected category
     $currentCate = $(".category_change").val();
