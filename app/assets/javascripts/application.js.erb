@@ -28,7 +28,6 @@ $(function() {
                 right: 'prev,next '
             },
       dayClick: function(date, jsEvent, view) {
-        alert('Clicked on: '+this);
         if ($.inArray(date.format(),recordList) !== -1) {
           var idxRecord = recordList.indexOf(date.format());
           var trueIdRecord = recordIdList[idxRecord];
