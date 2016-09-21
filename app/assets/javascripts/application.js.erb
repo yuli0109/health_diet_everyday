@@ -46,6 +46,7 @@ $(function() {
     $('#fat_food_select').text($fat);
     $('#protein_food_select').text($protein);
     //Change the image of current selected food
+    if ($currentFoodName === 'Yogurt-Greek') { $currentFoodName = 'Yogurt_Greek'}
     $("#food_image").attr('src',foodImgs[$currentFoodName]);
   });
   $(document).on('change', '#weight_input', function() {
