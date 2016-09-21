@@ -15,12 +15,14 @@ body h1 {
   margin: 0 auto;
   text-align: center;
   margin-bottom: 10px;
-  font-family: "cookieFont";
 }
 #welcomeBigTitle {
   text-align: center;
   margin:0 auto;
   margin-bottom: 1vw;
+  h1{
+    font-family: 'cookieFont'
+  }
 }
 
 #welcome_container {
