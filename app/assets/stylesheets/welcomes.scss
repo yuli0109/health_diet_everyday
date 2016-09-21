@@ -9,15 +9,27 @@ body {
 body h1 {
   margin: 0 auto;
   text-align: center;
+  margin-bottom: 10px;
+}
+#welcomeBigTitle {
+  text-align: center;
+  margin:0 auto;
+  margin-bottom: 1vw;
 }
 
 #welcome_container {
-  background-color: rgba(255,255,255,.3);
-  width: 80vw;
+  // background-color: rgba(255,255,255,.3);
+  width: 60vw;
   height: 50vw;
 }
 
+
 img.welcome_displays {
   width: 70vw;
-  max-height: 500px;
+  max-height: 600px;
+  padding: 0px 10px;
+  border-radius: 20px;
+}
+a.left, a.right  {
+  border-radius: 20px;
 }
