@@ -46,8 +46,7 @@ $(function() {
     $('#fat_food_select').text($fat);
     $('#protein_food_select').text($protein);
     //Change the image of current selected food
-    $impath = `foods/${$currentCate}/${$currentFoodName}.jpg`;
-    $("#food_image").attr('src',"<%= asset_path('foods/Fruit/Apple.jpg') %>");
+    $("#food_image").attr('src',foodImgs[$currentFoodName]);
   });
   $(document).on('change', '#weight_input', function() {
     //Get current category,food and weight input
@@ -63,3 +62,12 @@ $(function() {
     $("#protein_food_sum").text(`${($currentWeight*$pend_fat/100).toFixed(2)} g`);
   });
 });
+
+var foodImgs = {
+  Apple: "<%= asset_path('foods/Fruit/Apple.jpg') %>",
+  Orange: "<%= asset_path('foods/Fruit/Orange.jpg') %>",
+  Banana: "<%= asset_path('foods/Fruit/Banana.jpg') %>",
+  Egg: "<%= asset_path('foods/Meat/Egg.jpg') %>",
+  Milk: "<%= asset_path('foods/Drink/Milk.jpg') %>",
+  Yogurt_Greek: "<%= asset_path('foods/Drink/Yogurt_Greek.jpg') %>"
+}
