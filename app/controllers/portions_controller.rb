@@ -13,6 +13,13 @@ class PortionsController < ApplicationController
     end
   end
 
+  def destroy
+    portion = Portion.find(params[:id])
+    rec = portion.record
+    portion.destroy
+    redirect_to record_path(rec)
+  end
+
 
   private
     def portion_params

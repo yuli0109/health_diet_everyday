@@ -1,5 +1,6 @@
 <h1 id= "foods_title"><%= current_user.name %>'s Food Record of <%= @record.date_create %></h1>
-<div class="container" id="records_container">
+<div class="container" id="portions_container">
+  <%= render partial: 'records/portionChart'%>
   <table class="table table-hover">
     <tr>
       <th>Name</th>
@@ -10,13 +11,13 @@
       <th>Protein</th>
     </tr>
     <% @portions.each do |portion| %>
-      <tr>
-        <td><%= portion.food.name %></td>
-        <td><%= portion.weight %>g</td>
+      <tr portion-id="<%= portion.id %>" class="portion">
+        <td class="food_name_cells"><%= portion.food.name %></td>
+        <td class="weight_cells"><%= portion.weight %>g</td>
         <td><%= portion.food.category %></td>
-        <td><%= portion.food.calorie %> kcal</td>
-        <td><%= portion.food.fat %>g</td>
-        <td><%= portion.food.protein %>g</td>
+        <td class="calorie_cells"><%= portion.food.calorie %> kcal</td>
+        <td class="fat_cells"><%= portion.food.fat %>g</td>
+        <td class="protein_cells"><%= portion.food.protein %>g</td>
       </tr>
     <% end %>
   </table>
@@ -30,3 +31,31 @@
 </div>
 
 <%= render partial: 'portions/addPortion', locals: {record: @record} %>
+
+
+<script>
+$('.portion').on('click', deleteRowPortion);
+function deleteRowPortion() {
+  var ask = window.confirm("Are you sure you want to delete this portion?");
+  var $portionId = $(this).closest('tr').attr('portion-id');
+  if (ask) {
+    window.location = `/remove_portion/${$portionId}`;
+  }
+}
+//Getting the data in DOM!
+var food_name_array = [];
+var weight_array = [];
+var calorie_array = [];
+var fat_array = [];
+var protein_array = [];
+$('.food_name_cells').each(function() {food_name_array.push($(this).html())});
+$('.weight_cells').each(function() {weight_array.push(parseInt($(this).html()))});
+$('.calorie_cells').each(function() {calorie_array.push(parseInt($(this).html()))});
+$('.fat_cells').each(function() {fat_array.push(parseFloat($(this).html()))});
+$('.protein_cells').each(function() {protein_array.push(parseFloat($(this).html()))});
+  console.log(food_name_array);
+  console.log(weight_array);
+  console.log(calorie_array);
+  console.log(fat_array);
+  console.log(protein_array);
+</script>

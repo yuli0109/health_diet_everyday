@@ -4,7 +4,14 @@
 #records_container {
   margin-top: 5vw;
   width: 40vw;
-  // background-color: rgba(255,255,255,0.3);
+  // background-color: rgba(255,255,255,0.1);
+  border-radius: 8px;
+  padding: 20px;
+}
+#portions_container {
+  margin-top: 5vw;
+  width: 40vw;
+  background-color: rgba(255,255,255,0.3);
   border-radius: 8px;
   padding: 20px;
 }

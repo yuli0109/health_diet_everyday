@@ -11,7 +11,7 @@ class RecordsController < ApplicationController
     @foods = Food.all
     @json_foods = Food.all.to_json
     @record = Record.find(params[:id])
-    @portions = @record.portions
+    @portions = @record.portions.order(created_at: :desc)
     @foods_cates = Food.all.select(:category).distinct.order(category: :asc)
   end
 

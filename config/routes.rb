@@ -12,6 +12,9 @@ Rails.application.routes.draw do
   end
   resources :portions
 
+
+  get "/remove_portion/:id", to: "portions#destroy"
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
