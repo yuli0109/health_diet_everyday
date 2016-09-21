@@ -46,7 +46,7 @@ $(function() {
     $('#fat_food_select').text($fat);
     $('#protein_food_select').text($protein);
     //Change the image of current selected food
-    $("#food_image2").css('background',`image-url("foods/${$currentCate}/${$currentFoodName}.jpg")`);
+    $("#food_image").attr('src',`/assets/foods/${$currentCate}/${$currentFoodName}.jpg`);
   });
   $(document).on('change', '#weight_input', function() {
     //Get current category,food and weight input
