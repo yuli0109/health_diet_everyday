@@ -7,6 +7,7 @@
 
 ## Using  :dizzy:
 Visit [Application homepage on Heroku](https://health-diet-everyday.herokuapp.com/).  
+[Project Trello](https://trello.com/b/iXxL0Frv/wdi-project2)
 
 ## Instructions :wrench:
 
